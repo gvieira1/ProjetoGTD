@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+body{
+	background: #6667ab;
+}
+
+.lato-regular{
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.card-lista{
+	max-height: 300px;
+	 overflow-y: auto;
+}
+	
+.bg-nav{
+	background-color: #f0edff;
+}
+
+
+.hoverb:hover {
+    color: white; 
+    background-color: #6667ab; 
+    transition: background-color 0.5s ease, color 0.5s ease;
+    border-radius: 4px;
+}
+
+.btnadd{
+	color: white; 
+	background-color: #6667ab;
+	border-radius: 4px;
+}
+
+.btnadd:hover {
+	color: white; 
+	background-color: #9c9ae3;
+	border-radius: 4px;
+}
+
+.table{
+	border-radius: 2%;
+}
+
+.modal-body {
+    padding: 0; 
+}
+
+.modal-dialog {
+    max-height: 90vh; 
+    margin: 5% auto; 
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    top: 50%;
+    transform: translateY(-50%); 
+    width: 5%; 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5); 
+    border-radius: 50%; 
+}
+
+.carousel-control-prev {
+    left: -50px; 
+}
+
+.carousel-control-next {
+    right: -50px; 
+}
+
