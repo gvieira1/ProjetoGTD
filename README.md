@@ -13,4 +13,7 @@ Este projeto faz parte do projeto de conclusão de curso do ADS do IFSP-GRU e se
 - AJAX
 - MySql
 
+## Protótipo navegável do projeto
+[link para o figma](https://www.figma.com/design/Wl4w5vdbQ6NJKOSsOaM593/ProjetoGTD?node-id=0-1&t=kDYpx5Ry2dALnUlB-1)
+
 
