@@ -51,8 +51,12 @@ function exibirLista(categoria, lista) {
 	        $('#feitoModal').data('tarefa-id', tarefaId); 
 	        $('#feitoModal').data('is-checked', isChecked);  
 	    });
-}
+		
+		$('#feitoModal').on('hidden.bs.modal', function () {
+		     $('input[type="checkbox"][data-bs-toggle="modal"]').prop('checked', false);
+		});
 
+}
 
 
 // Função para definir a categoria dinamicamnte no front end

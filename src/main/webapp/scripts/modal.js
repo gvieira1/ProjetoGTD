@@ -16,4 +16,5 @@ export function initializeSwitches() {
     });
 
     $('#formSwitch1, #formSwitch2, #prazomodal').on('change', definirCategoria);
+	
 }

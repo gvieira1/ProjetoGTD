@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body{
-	background: #f0edff;
+	background: rgb(190,180,241);
 }
 
 html, body {
@@ -17,7 +17,7 @@ html, body {
 .footer {
 	text-align: center;
 	padding: 10px 0;
-	position: relative;
+	position: absolute;
 	bottom: 0;
 	width: 100%;
 }

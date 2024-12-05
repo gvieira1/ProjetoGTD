@@ -9,8 +9,8 @@ export function loadTarefas() {
 
         tarefas.forEach(function(tarefa) {
             const tarefaItem = `
-                <li class="list-group-item d-flex justify-content-between align-items-center" data-task-id="${tarefa.id}">
-                    ${tarefa.descricao} - ${tarefa.id}
+                <li class="list-group-item d-flex justify-content-between align-items-center overflow-y-scroll" data-task-id="${tarefa.id}">
+                    ${tarefa.descricao} 
                     <button class="btn btn-outline-dark hoverb edit-tarefa-btn " data-tarefa-id="${tarefa.id}">Classifique</button>
                 </li>
             `;
@@ -127,7 +127,7 @@ export function deleteTarefa(tarefaId, tarefaDelete) {
 				console.log('Tarefa excluída:', response);
 			    loadCategorias();
             } else {
-                alert('Erro ao excluir tarefa. -->');
+                alert('Erro ao excluir tarefa.');
             }
         },
         error: function(xhr, status, error) {

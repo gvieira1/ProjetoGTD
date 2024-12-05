@@ -22,7 +22,6 @@ public class DatabaseServletContextListener implements ServletContextListener {
 		try {
 			DBConnection dbConnection = initializeDatabaseConnection();
 		context.setAttribute("dbConnection", dbConnection);
-		System.out.println("Show!");
 		} catch (SQLException e) {
 			handleDatabaseConnectionError(e);
 		}
