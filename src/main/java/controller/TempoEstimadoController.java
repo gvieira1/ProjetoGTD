@@ -28,7 +28,7 @@ public class TempoEstimadoController extends HttpServlet {
         }
         tempoEstimadoDAO = new TempoEstimadoDAO(dbConnection);
     }
-
+    
     // Método GET para buscar os tempos estimados
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

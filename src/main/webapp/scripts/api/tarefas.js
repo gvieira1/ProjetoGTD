@@ -1,5 +1,4 @@
 
-
 import { loadCategorias } from './categorias.js';
 
 export function loadTarefas() {
@@ -62,6 +61,23 @@ export function openEditModal(tarefaId) {
     });
 }
 
+export function openEditModalClassificado(tarefaId) {
+    //
+    $.get(`/ProjetoGTD/atualiza/${tarefaId}`, function(tarefa) {
+        $('#descricaomodal').val(tarefa.descricao);
+        $('#prioridademodal').prop('checked', tarefa.prioridade);
+        $('#delegadomodal').prop('checked', tarefa.delegado);
+        if (tarefa.prazo) { $('#prazomodal').val(tarefa.prazo); }
+        $('#tempo_estimado').val(tarefa.tempoEstimadoId);
+        if (tarefa.assunto) { $('#assuntomodal').val(tarefa.assunto); }
+        $('#categoriamodal').val(tarefa.categoriaId);
+        $('#taskId').data('id', tarefa.id);
+        $('#tarefasModal').modal('show');
+    }).fail(function() {
+        alert('Erro ao carregar os dados da tarefa.');
+    });
+}
+
 export function updateTarefa(tarefaId, tarefaAtualizada) {
     $.ajax({
         url: `/ProjetoGTD/atualiza/${tarefaId}`,
@@ -80,3 +96,43 @@ export function updateTarefa(tarefaId, tarefaAtualizada) {
         }
     });
 }
+
+export function updateFeito(tarefaId, tarefaFeita) {
+	
+	$.ajax({
+	        url: `/ProjetoGTD/atualiza/${tarefaId}`,  
+	        method: 'PUT',
+	        data: JSON.stringify(tarefaFeita),
+	        contentType: 'application/json',
+	        success: function(response) {
+	            console.log('Tarefa marcada como feita:', response);
+				loadCategorias();
+	        },
+	        error: function(xhr, status, error) {
+	            console.log('Erro ao atualizar tarefa feita:', error, xhr, status);
+	        }
+	});
+}
+
+export function deleteTarefa(tarefaId, tarefaDelete) {
+	
+	console.log(tarefaId, tarefaDelete);
+    $.ajax({
+        url: `/ProjetoGTD/atualiza/${tarefaId}`, 
+        type: 'DELETE',
+        data: JSON.stringify(tarefaDelete), 
+        contentType: 'application/json',
+        success: function(response) {
+            if (response) {
+				console.log('Tarefa excluída:', response);
+			    loadCategorias();
+            } else {
+                alert('Erro ao excluir tarefa. -->');
+            }
+        },
+        error: function(xhr, status, error) {
+            alert('Ocorreu um erro ao tentar excluir a tarefa.', error, xhr, status);
+        }
+    });
+}
+

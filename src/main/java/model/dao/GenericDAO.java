@@ -95,7 +95,7 @@ public abstract class GenericDAO<T> {
 	}
 
 	
-	protected void delete(String sql, Object... params) {
+	protected boolean delete(String sql, Object... params) {
         try (Connection conn = dbConnection.getConnection();
             
         	PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -104,10 +104,12 @@ public abstract class GenericDAO<T> {
                 stmt.setObject(i + 1, params[i]);
             }
 
-            stmt.executeUpdate();
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
             
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 }

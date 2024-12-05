@@ -65,11 +65,32 @@ public class AtualizaTarefaController extends HttpServlet {
 			if (updated) {
 				JsonUtil.sendJsonResponse(resp, "success", "Tarefa atualizada com sucesso.");
 			} else {
-				JsonUtil.sendJsonResponse(resp, "error", "Erro ao atualizar tarefa.");
+				JsonUtil.sendJsonResponse(resp, "error", "Erro ao atualizar tarefa /.");
 			}
 		} else {
 			JsonUtil.sendJsonResponseBadRequest(resp, "error", "ID da tarefa não especificado");
 		}
-
 	}
+	
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		if (TarefaValidator.isPathValid(req.getPathInfo())) {
+			
+			Tarefa tarefa = JsonUtil.getGson().fromJson(req.getReader(), Tarefa.class);
+			tarefa.setUsuarioId(AutenticaService.getAuthenticatedUserId(req));
+			System.out.println(tarefa.getId() + "delete/");
+			
+			boolean deleted = tarefaDAO.deleteTarefa(tarefa);
+
+			if (deleted) {
+				JsonUtil.sendJsonResponse(resp, "success", "Tarefa excluida com sucesso.");
+			} else {
+				JsonUtil.sendJsonResponse(resp, "error", "Erro ao excluir tarefa /.");
+			}
+		} else {
+			JsonUtil.sendJsonResponseBadRequest(resp, "error", "ID da tarefa não especificado");
+		}
+	}
+	
 }

@@ -43,8 +43,12 @@ public class TarefaService {
 		if (!TarefaValidator.isTarefaValid(tarefa)) {
 			return false;
 		}
-		definirCategoria(tarefa);
-		return tarefaDAO.updateTarefa(tarefa);
+		if (tarefa.getFeito() == null || !tarefa.getFeito()) {
+			definirCategoria(tarefa);
+			return tarefaDAO.updateTarefa(tarefa);
+		}else {
+			return tarefaDAO.updateFeito(tarefa);
+		}
 	}
 
 }

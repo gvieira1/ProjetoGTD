@@ -7,7 +7,7 @@ import model.entity.Tarefa;
 public class TarefaValidator {
 
 	public static boolean isTarefaValid(Tarefa tarefa) {
-		return tarefa != null && tarefa.getDescricao() != null && !tarefa.getDescricao().isEmpty();
+		return tarefa != null;
 	}
 	
 	public static boolean isTarefaValid(List<Tarefa> tarefa) {

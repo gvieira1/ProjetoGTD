@@ -37,13 +37,15 @@ public class TarefaDAO extends GenericDAO<Tarefa> {
 	    return super.findAll(sql, new TarefaRowMapper(), usuarioId);
 	}
 
-	public List<Tarefa> findTarefaECategoria() {
-		String sql = "SELECT t.id, t.descricao, c.descricao AS categoria"
-				+ " FROM tarefa t"
-				+ " JOIN categoria c ON t.categoria_id = c.id"
-				+ " ORDER BY c.descricao;";
-		return super.findAll(sql, new TarefaRowMapper()::mapTarefaECategoria);
+	public List<Tarefa> findTarefaECategoria(int usuarioId) {
+	    String sql = "SELECT t.id, t.descricao, c.descricao AS categoria"
+	               + " FROM tarefa t"
+	               + " JOIN categoria c ON t.categoria_id = c.id"
+	               + " WHERE t.usuario_id = ?"
+	               + " ORDER BY c.descricao;";
+	    return super.findAll(sql, new TarefaRowMapper()::mapTarefaECategoria, usuarioId);
 	}
+
 	
 	public void insertTarefaDescricao(HttpServletRequest request, Tarefa tarefa) {
 		HttpSession session = request.getSession(false);
@@ -61,7 +63,7 @@ public class TarefaDAO extends GenericDAO<Tarefa> {
 	
 	
 	public boolean updateTarefa(Tarefa tarefa) {
-		String sql = "UPDATE tarefa SET descricao = ?, prioridade = ?, prazo = ?, tempo_estimado_id = ?, assunto = ?, delegado = ?, categoria_id = ? WHERE id = ?";
+		String sql = "UPDATE tarefa SET descricao = ?, prioridade = ?, prazo = ?, tempo_estimado_id = ?, assunto = ?, feito = ?, delegado = ?, categoria_id = ? WHERE id = ?";
 
 		int rowsUpdated = super.updateAndReturnAffectedRows(sql, 
 				tarefa.getDescricao(), 
@@ -69,11 +71,28 @@ public class TarefaDAO extends GenericDAO<Tarefa> {
 				tarefa.getPrazo(), 
 				tarefa.getTempoEstimadoId(), 
 				tarefa.getAssunto(),
-				//tarefa.getFeito() ? 1 : 0, 
+				(tarefa.getFeito() != null && tarefa.getFeito()) ? 1 : 0, 
 				tarefa.getDelegado() ? 1 : 0, 
 				tarefa.getCategoriaId(), 
 				tarefa.getId());
 		return rowsUpdated > 0;
+	}
+	
+	public boolean updateFeito(Tarefa tarefa) {
+	    String sql = "UPDATE tarefa SET feito = ?, categoria_id = 7 WHERE id = ?";
+
+	    int rowsUpdated = super.updateAndReturnAffectedRows(sql, 
+	            (tarefa.getFeito() != null && tarefa.getFeito()) ? 1 : 0,  
+	            tarefa.getId());
+	    return rowsUpdated > 0;
+	}
+
+	public boolean deleteTarefa(Tarefa tarefa) {
+		
+		String sql = "DELETE FROM tarefa WHERE id = ?";
+
+		boolean rowsUpdated = super.delete(sql, tarefa.getId());
+		return rowsUpdated;
 	}
 	
 	

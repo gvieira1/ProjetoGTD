@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.dao.TarefaDAO;
 import model.entity.Tarefa;
+import model.service.AutenticaService;
 import model.service.TarefaService;
 import utils.DBConnection;
 import utils.JsonUtil;
@@ -35,12 +36,15 @@ public class OrdenaTarefasController extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-    	
-    	List<Tarefa> todasAsTarefas = tarefaDAO.findTarefaECategoria();
-    	Map<String, List<Tarefa>> categoria = tarefaService.obterTarefaPorCategoria(todasAsTarefas);
-    	
-    	JsonUtil.sendJsonResponse(resp, categoria); 
-    	
+    	 if (!AutenticaService.isAuthenticated(req)) {
+             JsonUtil.sendJsonResponseUnauthorized(resp, "error", "Usuário não autenticado.");
+             return;
+         } else {
+         	Integer usuarioId = AutenticaService.getAuthenticatedUserId(req);
+         	List<Tarefa> todasAsTarefas = tarefaDAO.findTarefaECategoria(usuarioId);
+         	Map<String, List<Tarefa>> categoria = tarefaService.obterTarefaPorCategoria(todasAsTarefas);
+         	JsonUtil.sendJsonResponse(resp, categoria); 
+         }	
     }
     
 }

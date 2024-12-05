@@ -29,7 +29,7 @@
 						data-bs-target="#AddTarefa">Criar Projeto</a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link hoverb" aria-current="page" href="#">Relatório semanal</a>
+          <a class="nav-link hoverb" aria-current="page" href="./relatorio.html">Relatório semanal</a>
         </li>
       </ul>
       <form class="d-flex">
@@ -189,11 +189,12 @@
 		</div>
 	</div>
 
-	
-<!-- Modal para edição -->
-<div class="modal fade" id="tarefasModal" tabindex="-1" aria-labelledby="tarefasModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+
+	<!-- Modal para edição -->
+	<div class="modal fade" id="tarefasModal" tabindex="-1"
+		aria-labelledby="tarefasModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="tarefasModalLabel">Editar Tarefa</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -201,69 +202,116 @@
 				</div>
 				<div class="modal-body">
 					<div id="taskId" data-id=""></div>
-					<form id="tarefaForm" >
-						<input type="hidden" id="tarefaId">
-						<div class="mb-3">
-							<label for="descricaomodal" class="form-label">Descrição</label>
-							<input type="text" class="form-control" id="descricaomodal"
-								name="descricaomodal" required>
-						</div>
-						<div class="mb-3">
-							<label for="prioridademodal" class="form-label">É
-								prioridade?</label>
-							<!-- Switch de Prioridade -->
-							<div class="form-check form-switch">
-								<input class="form-check-input" type="checkbox" id="formSwitch1">
-								<label class="form-check-label" for="formSwitch1"
-									id="switchLabel1">Não</label>
-							</div>
-						</div>
-						<div class="mb-3">
-							<label for="prazomodal" class="form-label">Prazo</label> <input
-								type="date" class="form-control" id="prazomodal"
-								name="prazomodal">
-						</div>
-						<div class="mb-3">
-							<label for="tempoEstimadomodal" class="form-label">Tempo
-								Estimado</label> <select id="tempo_estimado" name="tempo_estimado"
-								required>
+					<div class="p-4 border rounded-3 shadow-sm">
+						<form id="tarefaForm">
+							<input type="hidden" id="tarefaId">
 
-							</select>
-						</div>
-						<div class="mb-3">
-							<label for="assuntomodal" class="form-label">Assunto</label> <input
-								type="text" class="form-control" id="assuntomodal"
-								name="assuntomodal" required>
-						</div>
-						<div class="mb-3">
-							<label for="delegadomodal" class="form-label">Pode ser
-								delegado?</label>
-							<!-- Switch de Delegado -->
-							<div class="form-check form-switch">
-								<input class="form-check-input" type="checkbox" id="formSwitch2">
-								<label class="form-check-label" for="formSwitch2"
-									id='switchLabel2'>Não</label>
+							<div class="mb-3">
+								<label for="descricaomodal" class="form-label">Descrição</label>
+								<input type="text" class="form-control" id="descricaomodal"
+									name="descricaomodal" required>
 							</div>
-						</div>
-						<div class="mb-3">
-							<label for="categoriamodal" class="form-label">Categoria</label>
-							<select class="form-select" id="categoriamodal"
-								name="categoriamodal" disabled>
-								<option value="1">Quando Puder</option>
-								<option value="2">Agendado</option>
-								<option value="3">Projeto</option>
-								<option value="4">Aguardando Resposta</option>
-								<option value="5" >Arquivo</option>
-								<option value="6">Arquivo</option>
-							</select>
-						</div>
-						<button type="submit" class="btn btn-primary">Salvar
-							Alterações</button>
-					</form>
+
+							<div class="mb-3">
+								<label for="prioridademodal" class="form-label">É
+									prioridade?</label>
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox"
+										id="formSwitch1"> <label class="form-check-label"
+										for="formSwitch1" id="switchLabel1">Não</label>
+								</div>
+							</div>
+
+							<div class="mb-3">
+								<label for="prazomodal" class="form-label">Prazo</label> <input
+									type="date" class="form-control" id="prazomodal"
+									name="prazomodal">
+							</div>
+
+							<div class="mb-3">
+								<label for="tempoEstimadomodal" class="form-label">Tempo
+									Estimado</label> <select id="tempo_estimado" name="tempo_estimado"
+									class="form-select" required>
+									<!-- Opções -->
+								</select>
+							</div>
+
+							<div class="mb-3">
+								<label for="assuntomodal" class="form-label">Assunto</label> <input
+									type="text" class="form-control" id="assuntomodal"
+									name="assuntomodal" required>
+							</div>
+
+							<div class="mb-3">
+								<label for="delegadomodal" class="form-label">Pode ser
+									delegado?</label>
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox"
+										id="formSwitch2"> <label class="form-check-label"
+										for="formSwitch2" id="switchLabel2">Não</label>
+								</div>
+							</div>
+
+							<div class="mb-3">
+								<label for="categoriamodal" class="form-label">Categoria</label>
+								<select class="form-select" id="categoriamodal"
+									name="categoriamodal" disabled>
+									<option value="1">Quando Puder</option>
+									<option value="2">Agendado</option>
+									<option value="3">Projeto</option>
+									<option value="4">Aguardando Resposta</option>
+									<option value="5">Arquivo</option>
+									<option value="6">Arquivo</option>
+								</select>
+							</div>
+							
+							<div class="d-flex justify-content-between mt-4">
+								<button type="button" class="btn btn-outline-danger ms-2" data-bs-toggle="modal" data-bs-target="#deleteModal" id="deleteTask">Excluir tarefa</button>
+								<button type="submit" class="btn btnadd">Salvar Alterações</button>
+							</div>
+						</form>
+					</div>
+
 				</div>
 			</div>
-    </div>
-</div>
+		</div>
+	</div>
+	
+	    <!-- Modal Feito -->
+	<div class="modal fade" id="feitoModal" tabindex="-1" aria-labelledby="feitoModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="feitoModalLabel">Finalizar tarefa?</h1>
+	      </div>
+	      <form id="feitoModalForm">
+	        <div class="modal-footer d-flex justify-content-between mt-4">
+	          <button type="button" class="btn btn-outline-danger ms-2" data-bs-dismiss="modal">Cancelar</button>
+	          <button type="submit" class="btn btnadd">Marcar como feito</button>
+	        </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+	
+	    <!-- Modal Delete -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="feitoModalLabel">Excluir tarefa?</h1>
+	      </div>
+	      <form id="deleteModalForm">
+	        <div class="modal-footer d-flex justify-content-between mt-4">
+	          <button type="button" class="btn btn-outline-danger ms-2" data-bs-dismiss="modal">Cancelar</button>
+	          <button type="submit" class="btn btnadd">Excluir permanentemente</button>
+	        </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+
+	
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

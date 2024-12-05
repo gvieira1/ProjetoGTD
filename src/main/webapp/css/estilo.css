@@ -52,3 +52,23 @@ body{
     margin: 5% auto; 
 }
 
+
+.list-group-item-action:hover {
+    background-color: #f0edff;
+}
+
+input[type="checkbox"]:checked::before {
+    background-color: #ffffff; 
+    border-color: #ffffff;    
+}
+
+input[type="checkbox"]:not(:checked) {
+    background-color: #f8f9fa; 
+    border-color: #6667ab;    
+}
+
+input[type="checkbox"]:checked {
+    background-color: #6667ab; 
+    border-color: #6667ab;   
+}
+
